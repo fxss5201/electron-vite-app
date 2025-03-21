@@ -49,5 +49,6 @@ publish:
   repo: electron-vite-app
   releaseType: release
   publishAutoUpdate: true
+  token: ${{ secrets.electron_vite_app_TOKEN }}
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/
