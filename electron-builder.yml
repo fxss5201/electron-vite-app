@@ -22,11 +22,7 @@ nsis:
   allowToChangeInstallationDirectory: true
   perMachine: true
   installerIcon: build/icon.ico
-  installerHeaderIcon: build/icon.ico
-  installerSidebar: build/icon.ico
   uninstallerIcon: build/icon.ico
-  uninstallerHeaderIcon: build/icon.ico
-  uninstallerSidebar: build/icon.ico
 mac:
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
@@ -53,11 +49,5 @@ publish:
   repo: electron-vite-app
   releaseType: release
   publishAutoUpdate: true
-  releaseNameTemplate: v${version}
-  releaseBodyTemplate: |
-    ## What's Changed
-    ${commits}
-    ## Contributors
-    ${contributors}
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/
