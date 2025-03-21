@@ -2,6 +2,20 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import log from 'electron-log/main'
+import { existsSync, mkdirSync } from 'node:fs'
+import * as dayjs from 'dayjs'
+import './checkUpdate'
+
+log.initialize()
+log.transports.file.resolvePathFn = (): string => {
+  const logDir = join(app.getPath('userData'), 'logs')
+  if (!existsSync(logDir)) {
+    mkdirSync(logDir, { recursive: true })
+  }
+  return join(logDir, `log-${dayjs().format('YYYY-MM-DD')}.log`)
+}
+log.info('App starting...')
 
 function createWindow(): void {
   // Create the browser window.
