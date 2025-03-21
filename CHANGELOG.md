@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.5](https://github.com/fxss5201/electron-vite-app/compare/v0.0.4...v0.0.5) (2025-03-21)
+
+
+### Features
+
+* 修改打包配置 ([b4c76a2](https://github.com/fxss5201/electron-vite-app/commit/b4c76a2307d8e71eecd70022174d6dcc11209819))
+
 ## [0.0.4](https://github.com/fxss5201/electron-vite-app/compare/v0.0.3...v0.0.4) (2025-03-21)
 
 
