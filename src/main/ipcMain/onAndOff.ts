@@ -37,7 +37,7 @@ export function addIpcMainOnFn(
     stopFlashFrame(win)
   })
 
-  ipcMain.addListener('startFlashTray', (event: Electron.IpcMainEvent, time: number) => {
+  ipcMain.addListener('startFlashTray', (_event: Electron.IpcMainEvent, time: number) => {
     startFlashTray(tray, time)
   })
   ipcMain.addListener('stopFlashTray', () => {

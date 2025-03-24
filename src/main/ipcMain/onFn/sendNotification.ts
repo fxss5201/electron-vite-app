@@ -6,7 +6,7 @@ type NotificationForm = {
   body: string
   icon?: string
 }
-export function sendNotification(event: Electron.IpcMainEvent, form: NotificationForm) {
+export function sendNotification(_event: Electron.IpcMainEvent, form: NotificationForm) {
   const icon = nativeImage.createFromPath(iconPath)
   new Notification({
     title: form.title,

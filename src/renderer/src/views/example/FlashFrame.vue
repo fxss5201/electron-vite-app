@@ -12,9 +12,8 @@ function startFlashFrameFn() {
 }
 
 function stopFlashFrameFn() {
-  window.electron.ipcRenderer.send('stopFlashFrame') 
+  window.electron.ipcRenderer.send('stopFlashFrame')
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

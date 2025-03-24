@@ -48,7 +48,7 @@ export const routes = [
     name: 'Notifications',
     component: () => import('@renderer/views/example/Notifications.vue'),
     meta: {
-      title: '通知' 
+      title: '通知'
     }
   },
   {
@@ -56,7 +56,7 @@ export const routes = [
     name: 'FlashFrame',
     component: () => import('@renderer/views/example/FlashFrame.vue'),
     meta: {
-      title: '任务栏图标闪烁' 
+      title: '任务栏图标闪烁'
     }
   },
   {
@@ -64,7 +64,7 @@ export const routes = [
     name: 'FlashTray',
     component: () => import('@renderer/views/example/FlashTray.vue'),
     meta: {
-      title: 'Tray图标闪烁' 
+      title: 'Tray图标闪烁'
     }
   }
 ]
@@ -72,13 +72,13 @@ export const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(_to, _from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     } else {
       return { top: 0 }
     }
-  },
+  }
 })
 
-export default router;
+export default router

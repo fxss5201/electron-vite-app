@@ -7,23 +7,22 @@
 </template>
 
 <script setup lang="ts">
-import { useDark, useToggle } from '@vueuse/core';
-import { watch } from 'vue';
+import { useDark, useToggle } from '@vueuse/core'
+import { watch } from 'vue'
 
-const isDark = useDark();
+const isDark = useDark()
 
 const setDarkMode = () => {
-  isDark.value = true; 
+  isDark.value = true
 }
-const toggleDark = useToggle(isDark);
+const toggleDark = useToggle(isDark)
 
 watch(
   () => isDark.value,
   async (val) => {
-    window.electron.ipcRenderer.send('setDarkMode', val);
+    window.electron.ipcRenderer.send('setDarkMode', val)
   }
 )
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

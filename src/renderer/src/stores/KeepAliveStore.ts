@@ -5,7 +5,7 @@ export const useKeepAliveStore = defineStore(
   'keepAlive',
   () => {
     const componentNames = ref<string[]>([])
-    
+
     function addComponentName(name: string) {
       if (componentNames.value.includes(name)) {
         return
@@ -22,6 +22,6 @@ export const useKeepAliveStore = defineStore(
     return { componentNames, addComponentName, removeComponentName }
   },
   {
-    persist: true,
+    persist: true
   }
 )

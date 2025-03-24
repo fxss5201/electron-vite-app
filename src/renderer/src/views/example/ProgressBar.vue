@@ -19,13 +19,12 @@ function pauseProgressBarFn() {
 }
 
 function resumeProgressBarFn() {
-  window.electron.ipcRenderer.send('resumeProgressBar') 
+  window.electron.ipcRenderer.send('resumeProgressBar')
 }
 
 function resetProgressBarFn() {
-  window.electron.ipcRenderer.send('resetProgressBar') 
+  window.electron.ipcRenderer.send('resetProgressBar')
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

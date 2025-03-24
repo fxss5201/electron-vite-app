@@ -27,7 +27,7 @@ function createLoginWindow(): BrowserWindow {
     } as RouterMessage)
   })
 
-  ipcMain.once('login', (event: Electron.IpcMainEvent, form) => {
+  ipcMain.once('login', (_event: Electron.IpcMainEvent, form) => {
     console.log('form', form)
     loginWindow.close()
     store.set('user', form)

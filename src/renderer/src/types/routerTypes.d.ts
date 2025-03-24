@@ -1,8 +1,8 @@
-import { RouteLocationRaw } from 'vue-router';
+import { RouteLocationRaw } from 'vue-router'
 
-export type RouterType = 'push' | 'replace';
+export type RouterType = 'push' | 'replace'
 
 export interface RouterMessage {
-  type: RouterType;
-  router: RouteLocationRaw;
+  type: RouterType
+  router: RouteLocationRaw
 }

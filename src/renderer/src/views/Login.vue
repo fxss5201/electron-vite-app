@@ -4,27 +4,20 @@
       <div class="logo-icon-box">
         <img class="logo-icon" :src="logo" alt="logo" />
       </div>
-      <el-form
-        ref="formRef"
-        :model="form"
-        :rules="rules"
-        label-width="auto"
-        class="w-full"
-      >
-        <el-form-item
-          prop="account"
-          label="账号"
-        >
+      <el-form ref="formRef" :model="form" :rules="rules" label-width="auto" class="w-full">
+        <el-form-item prop="account" label="账号">
           <el-input v-model="form.account" placeholder="请输入账号" />
         </el-form-item>
-        <el-form-item
-          prop="password"
-          label="密码"
-        >
-          <el-input v-model="form.password" type="password" show-password placeholder="请输入密码" />
+        <el-form-item prop="password" label="密码">
+          <el-input
+            v-model="form.password"
+            type="password"
+            show-password
+            placeholder="请输入密码"
+          />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm(formRef)" class="w-full">登录</el-button>
+          <el-button type="primary" class="w-full" @click="submitForm(formRef)">登录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -38,32 +31,32 @@ import { onKeyStroke } from '@vueuse/core'
 import logo from '@renderer/assets/images/256x256.png'
 
 interface RuleForm {
-  account: string,
-  password: string,
+  account: string
+  password: string
 }
 const formRef = ref<FormInstance>()
 const form = reactive<RuleForm>({
   account: '',
-  password: '',
+  password: ''
 })
 const rules = reactive<FormRules<RuleForm>>({
   account: [
     {
       required: true,
       message: '请输入账号',
-      trigger: 'blur',
+      trigger: 'blur'
     }
   ],
   password: [
     {
       required: true,
       message: '请输入密码',
-      trigger: 'blur',
+      trigger: 'blur'
     },
     {
       min: 6,
       max: 12,
-      message: '密码长度在 6 到 12 个字符之间', 
+      message: '密码长度在 6 到 12 个字符之间'
     }
   ]
 })
@@ -84,7 +77,7 @@ function handleLogin() {
 }
 
 onKeyStroke('Enter', () => {
-  submitForm(formRef.value)  
+  submitForm(formRef.value)
 })
 </script>
 

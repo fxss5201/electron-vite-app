@@ -13,13 +13,12 @@ function startFlashTrayFn() {
 }
 
 function startFlashTrayNoStopFn() {
-  window.electron.ipcRenderer.send('startFlashTray', 0) 
+  window.electron.ipcRenderer.send('startFlashTray', 0)
 }
 
 function stopFlashTrayFn() {
-  window.electron.ipcRenderer.send('stopFlashTray') 
+  window.electron.ipcRenderer.send('stopFlashTray')
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

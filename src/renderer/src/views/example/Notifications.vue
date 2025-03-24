@@ -1,7 +1,7 @@
 <template>
   <div class="page-box">
     <h1>Notifications</h1>
-    <el-form :model="form" label-width="auto" style="width: 600px;margin: 0 auto;">
+    <el-form :model="form" label-width="auto" style="width: 600px; margin: 0 auto">
       <el-form-item label="通知标题">
         <el-input v-model="form.title" />
       </el-form-item>
@@ -20,7 +20,7 @@ import { reactive, toRaw } from 'vue'
 
 const form = reactive({
   title: '',
-  body: '',
+  body: ''
 })
 
 const onSubmit = () => {
@@ -28,5 +28,4 @@ const onSubmit = () => {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
