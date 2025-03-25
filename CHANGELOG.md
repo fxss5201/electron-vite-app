@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.4](https://github.com/fxss5201/electron-vite-app/compare/v0.0.3...v0.0.4) (2025-03-25)
+
+
+### Features
+
+* 增加 sqlite 数据库 ([c1f289e](https://github.com/fxss5201/electron-vite-app/commit/c1f289e467ae5f7e878e83b689d8cabd3abf93da))
+
 ## [0.0.3](https://github.com/fxss5201/electron-vite-app/compare/v0.0.2...v0.0.3) (2025-03-24)
 
 
