@@ -33,9 +33,13 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
+    "@swc/core": "^1.11.13",
     "dayjs": "^1.11.13",
     "electron-squirrel-startup": "^1.0.1",
-    "electron-updater": "^6.3.9"
+    "electron-updater": "^6.3.9",
+    "reflect-metadata": "^0.2.2",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.21"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "3.0.0",

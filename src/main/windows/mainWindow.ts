@@ -17,7 +17,8 @@ function createMainWindow() {
     title: '主窗口',
     width: 800,
     height: 600,
-    resizable: false
+    maximizable: true,
+    minimizable: true
   })
 
   mainWindow.webContents.on('did-finish-load', () => {

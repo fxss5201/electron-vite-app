@@ -1,5 +1,5 @@
 <template>
-  <div class="page-box">
+  <div class="page-box text-center">
     <h1>FlashFrame</h1>
     <el-button plain @click="startFlashFrameFn">开始闪烁</el-button>
     <el-button plain @click="stopFlashFrameFn">关闭闪烁</el-button>

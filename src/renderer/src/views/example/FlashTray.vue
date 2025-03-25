@@ -1,5 +1,5 @@
 <template>
-  <div class="page-box">
+  <div class="page-box text-center">
     <h1>FlashTray</h1>
     <el-button plain @click="startFlashTrayFn">开始闪烁（8秒自动停止）</el-button>
     <el-button plain @click="startFlashTrayNoStopFn">开始闪烁（永不停止）</el-button>

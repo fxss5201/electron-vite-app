@@ -1,5 +1,5 @@
 <template>
-  <div class="page-box">
+  <div class="page-box text-center">
     <h1>Notifications</h1>
     <el-form :model="form" label-width="auto" style="width: 600px; margin: 0 auto">
       <el-form-item label="通知标题">

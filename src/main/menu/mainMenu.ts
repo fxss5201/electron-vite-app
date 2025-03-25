@@ -90,6 +90,23 @@ function createMainMenu(
               }
             })
           }
+        },
+        { type: 'separator' },
+        {
+          label: 'sqlite',
+          submenu: [
+            {
+              label: '用户列表',
+              click: () => {
+                mainWindow.webContents.send('router', {
+                  type: 'replace',
+                  router: {
+                    path: '/sqlite/userList'
+                  }
+                })
+              }
+            }
+          ]
         }
       ]
     },

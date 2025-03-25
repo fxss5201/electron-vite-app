@@ -1,32 +1,6 @@
 import { createWebHashHistory, createRouter } from 'vue-router'
 
-export const routes = [
-  {
-    path: '/',
-    name: 'Empty',
-    component: () => import('@renderer/views/Empty.vue')
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@renderer/views/Login.vue'),
-    meta: {
-      title: '登录'
-    }
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: () => import('@renderer/views/Home.vue'),
-    meta: {
-      title: '首页'
-    }
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    name: 'NotFound',
-    component: () => import('@renderer/views/NotFound.vue')
-  },
+const exampleRoutes = [
   {
     path: '/darkMode',
     name: 'DarkMode',
@@ -66,6 +40,44 @@ export const routes = [
     meta: {
       title: 'Tray图标闪烁'
     }
+  },
+  {
+    path: '/sqlite/userList',
+    name: 'UserList',
+    component: () => import('@renderer/views/example/sqlite/users/UserList.vue'),
+    meta: {
+      title: '用户列表'
+    }
+  }
+]
+
+export const routes = [
+  {
+    path: '/',
+    name: 'Empty',
+    component: () => import('@renderer/views/Empty.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@renderer/views/Login.vue'),
+    meta: {
+      title: '登录'
+    }
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: () => import('@renderer/views/Home.vue'),
+    meta: {
+      title: '首页'
+    }
+  },
+  ...exampleRoutes,
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@renderer/views/NotFound.vue')
   }
 ]
 

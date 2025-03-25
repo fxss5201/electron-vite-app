@@ -5,12 +5,13 @@ import './functional/checkUpdate'
 import createLoginWindow from './windows/loginWindow'
 import createMainWindow from './windows/mainWindow'
 import store from './stores'
+import { connectToDatabase, destroyDatabase } from './db/index'
 
 if (started) {
   app.quit()
 }
 
-function createWindow () {
+function createWindow() {
   if (store.get('user').account) {
     createMainWindow()
   } else {
@@ -18,7 +19,8 @@ function createWindow () {
   }
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  await connectToDatabase()
   createWindow()
 
   app.on('activate', () => {
@@ -32,4 +34,8 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
+})
+
+app.on('before-quit', async () => {
+  await destroyDatabase()
 })

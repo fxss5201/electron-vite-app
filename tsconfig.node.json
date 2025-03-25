@@ -5,6 +5,11 @@
     "composite": true,
     "module": "NodeNext",
     "moduleResolution": "nodenext",
-    "types": ["electron-vite/node"]
+    "types": ["electron-vite/node"],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
   }
 }

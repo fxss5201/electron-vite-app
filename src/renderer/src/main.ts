@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import App from './App.vue'
 import log from 'electron-log/renderer'
-import type { RouterMessage } from './types/routerTypes'
+import type { RouterMessage } from './types/routerType'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 

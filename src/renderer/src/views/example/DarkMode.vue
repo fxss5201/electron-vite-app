@@ -1,5 +1,5 @@
 <template>
-  <div class="page-box">
+  <div class="page-box text-center">
     <h1>Dark Mode</h1>
     <el-button plain @click="setDarkMode">暗黑模式</el-button>
     <el-button plain @click="toggleDark()">切换模式</el-button>
