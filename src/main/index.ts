@@ -6,6 +6,9 @@ import createLoginWindow from './windows/loginWindow'
 import createMainWindow from './windows/mainWindow'
 import store from './stores'
 import { connectToDatabase, destroyDatabase } from './db/index'
+import chalk from 'chalk'
+
+chalk.level = 1
 
 if (started) {
   app.quit()
