@@ -32,3 +32,16 @@ $ npm run build:mac
 # For Linux
 $ npm run build:linux
 ```
+
+## typeORM 数据迁移
+
+需要将 `tsconfig.json` 修改为 `tsconfig.app.json` ，并将 `tsconfig-typeorm.json` 修改为 `tsconfig.json`（执行完了之后需要还原）。
+
+### 生成迁移文件
+
+1. 将 `./src/main/db/data-source.ts` 中的 database 改为 `database: './src/main/db/database.sqlite'`；
+2. 执行 `npx typeorm-ts-node-commonjs migration:generate ./src/main/db/migration/data -d ./src/main/db/data-source.ts` 生成迁移文件。
+
+### 执行迁移文件
+
+1. 执行 `npx typeorm-ts-node-commonjs migration:run -d ./src/main/db/data-source.ts` 执行迁移文件。
