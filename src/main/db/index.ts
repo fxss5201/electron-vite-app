@@ -4,6 +4,14 @@ import { DataSource } from 'typeorm'
 import log from 'electron-log/main'
 import * as userAction from './controller/userAction'
 import chalk from 'chalk'
+import { app } from 'electron'
+import { join } from 'path'
+import { existsSync, mkdirSync } from 'node:fs'
+
+const databaseDir = join(app.getPath('userData'), 'database')
+if (!existsSync(databaseDir)) {
+  mkdirSync(databaseDir, { recursive: true })
+}
 
 export async function connectToDatabase(): Promise<DataSource> {
   try {

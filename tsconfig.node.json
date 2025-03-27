@@ -3,11 +3,13 @@
   "include": ["electron.vite.config.*", "src/main/**/*", "src/preload/**/*"],
   "compilerOptions": {
     "composite": true,
+    "lib": ["es6"],
     "module": "NodeNext",
     "moduleResolution": "nodenext",
     "types": ["electron-vite/node"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "useDefineForClassFields": false,
     "strictPropertyInitialization": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
