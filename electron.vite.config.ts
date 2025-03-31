@@ -8,7 +8,12 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin(), swcPlugin()],
+    plugins: [
+      externalizeDepsPlugin({
+        exclude: ['electron-debug', 'chalk']
+      }),
+      swcPlugin()
+    ],
     build: {
       rollupOptions: {
         external: ['sqlite3']
@@ -28,10 +33,10 @@ export default defineConfig({
       vue(),
       vueDevTools(),
       AutoImport({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver()]
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver()]
       })
     ]
   }
