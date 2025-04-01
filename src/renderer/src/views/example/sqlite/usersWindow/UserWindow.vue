@@ -74,9 +74,6 @@ function pageChangeFn(page: number, size: number) {
 
 const dialogVisible = ref(false)
 function addUserFn() {
-  if (dialogVisible.value) {
-    return
-  }
   dialogVisible.value = true
   window.electron.ipcRenderer.send('userDialogPage', {})
 }
@@ -89,9 +86,6 @@ window.electron.ipcRenderer.on('userDialogPageConfirm', () => {
 })
 
 function toDetailEvent(row: UserType) {
-  if (dialogVisible.value) {
-    return
-  }
   dialogVisible.value = true
   window.electron.ipcRenderer.send('userDialogPage', {
     id: row.id

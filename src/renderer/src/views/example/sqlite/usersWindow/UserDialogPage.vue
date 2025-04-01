@@ -79,8 +79,10 @@ watch(
   () => route.query,
   (newVal) => {
     document.title = newVal.id ? '编辑用户' : '新增用户'
-    if (newVal && newVal.id) {
+    if (newVal.id) {
       getUserById()
+    } else {
+      formRef.value?.resetFields()
     }
   },
   {

@@ -11,6 +11,7 @@ import {
 import { resetProgressBar } from './../functional/progressBar'
 import registryShortcut from './../functional/registryShortcut'
 import createTray from './../tray'
+import { userDialogPageWindow } from './../ipcMain/onFn/userDialogPage'
 
 function createMainWindow() {
   const mainWindow = createWindow({
@@ -45,6 +46,7 @@ function createMainWindow() {
     removeIpcMainHandlerFn()
     removeIpcMainOnFn()
     tray.destroy()
+    userDialogPageWindow?.close()
   })
 
   const mainMenu = createMainMenu(mainWindow)

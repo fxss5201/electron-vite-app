@@ -8,15 +8,17 @@ interface UserDialogPageType {
   id?: number
 }
 
+export { userDialogPageWindow }
+
 export function userDialogPage(_event: Electron.IpcMainEvent, val: UserDialogPageType) {
-  const windowConfig: Electron.BrowserWindowConstructorOptions = {
-    width: 500,
-    height: 220,
-    maximizable: true,
-    minimizable: true,
-    autoHideMenuBar: true
-  }
   if (!userDialogPageWindow) {
+    const windowConfig: Electron.BrowserWindowConstructorOptions = {
+      width: 500,
+      height: 220,
+      maximizable: true,
+      minimizable: true,
+      autoHideMenuBar: true
+    }
     userDialogPageWindow = createWindow(windowConfig)
     userDialogPageWindow.webContents.on('did-finish-load', () => {
       userDialogPageWindow!.webContents.send('router', {
@@ -28,6 +30,7 @@ export function userDialogPage(_event: Electron.IpcMainEvent, val: UserDialogPag
           }
         }
       } as RouterMessage)
+      userDialogPageWindow!.focus()
     })
 
     userDialogPageWindow.once('close', () => {
@@ -36,6 +39,18 @@ export function userDialogPage(_event: Electron.IpcMainEvent, val: UserDialogPag
     userDialogPageWindow.once('closed', () => {
       userDialogPageWindow = null
     })
+  } else {
+    userDialogPageWindow!.webContents.send('router', {
+      type: 'replace',
+      router: {
+        path: '/sqlite/userDialogPage',
+        query: {
+          id: val.id
+        }
+      }
+    } as RouterMessage)
+    userDialogPageWindow!.moveTop()
+    userDialogPageWindow!.focus()
   }
 }
 
