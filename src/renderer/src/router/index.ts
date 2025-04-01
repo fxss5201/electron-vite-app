@@ -38,7 +38,8 @@ const exampleRoutes = [
     name: 'FlashTray',
     component: () => import('@renderer/views/example/FlashTray.vue'),
     meta: {
-      title: 'Tray图标闪烁'
+      title: 'Tray图标闪烁',
+      keepAlive: true
     }
   },
   {
@@ -47,6 +48,22 @@ const exampleRoutes = [
     component: () => import('@renderer/views/example/sqlite/users/UserList.vue'),
     meta: {
       title: '用户列表'
+    }
+  },
+  {
+    path: '/sqlite/userWindow',
+    name: 'UserWindow',
+    component: () => import('@renderer/views/example/sqlite/usersWindow/UserWindow.vue'),
+    meta: {
+      title: '用户弹窗'
+    }
+  },
+  {
+    path: '/sqlite/userDialogPage',
+    name: 'UserDialogPage',
+    component: () => import('@renderer/views/example/sqlite/usersWindow/UserDialogPage.vue'),
+    meta: {
+      title: '用户信息'
     }
   }
 ]

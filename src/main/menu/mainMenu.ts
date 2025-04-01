@@ -105,6 +105,17 @@ function createMainMenu(
                   }
                 })
               }
+            },
+            {
+              label: '用户弹窗',
+              click: () => {
+                mainWindow.webContents.send('router', {
+                  type: 'replace',
+                  router: {
+                    path: '/sqlite/userWindow'
+                  }
+                })
+              }
             }
           ]
         }

@@ -9,6 +9,7 @@ import { startFlashFrame, stopFlashFrame } from '../functional/flashFrame'
 import { startFlashTray, stopFlashTray } from '../functional/flashTray'
 import { setDarkMode } from './onFn/setDarkMode'
 import { sendNotification } from './onFn/sendNotification'
+import { userDialogPage, removeUserDialogPageWindow, userDialogPageWindowConfirm } from './onFn/userDialogPage'
 
 export function addIpcMainOnFn(
   win: Electron.CrossProcessExports.BrowserWindow,
@@ -43,6 +44,10 @@ export function addIpcMainOnFn(
   ipcMain.addListener('stopFlashTray', () => {
     stopFlashTray(tray)
   })
+
+  ipcMain.addListener('userDialogPage', userDialogPage)
+  ipcMain.addListener('removeUserDialogPageWindow', removeUserDialogPageWindow)
+  ipcMain.addListener('userDialogPageWindowConfirm', userDialogPageWindowConfirm)
 }
 
 export function removeIpcMainOnFn() {
@@ -59,4 +64,8 @@ export function removeIpcMainOnFn() {
 
   ipcMain.removeAllListeners('startFlashTray')
   ipcMain.removeAllListeners('stopFlashTray')
+
+  ipcMain.removeAllListeners('userDialogPage')
+  ipcMain.removeAllListeners('removeUserDialogPageWindow')
+  ipcMain.removeAllListeners('userDialogPageWindowConfirm')
 }

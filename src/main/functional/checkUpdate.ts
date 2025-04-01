@@ -8,11 +8,11 @@ import { join } from 'path'
 if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
   autoUpdater.updateConfigPath = join(__dirname, '../../dev-app-update.yml')
 }
-Object.defineProperty(app, 'isPackaged', {
-  get() {
-    return true
-  }
-})
+// Object.defineProperty(app, 'isPackaged', {
+//   get() {
+//     return true
+//   }
+// })
 // dev-end
 
 autoUpdater.checkForUpdates()

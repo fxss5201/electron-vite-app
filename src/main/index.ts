@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron'
 import started from 'electron-squirrel-startup'
 import './functional/log'
-import './functional/checkUpdate'
+// import './functional/checkUpdate'
 import createLoginWindow from './windows/loginWindow'
 import createMainWindow from './windows/mainWindow'
 import store from './stores'
@@ -17,9 +17,11 @@ if (started) {
 
 debug()
 
+let mainBrowserWindow: BrowserWindow | null = null
+
 function createWindow() {
   if (store.get('user').account) {
-    createMainWindow()
+    mainBrowserWindow = createMainWindow()
   } else {
     createLoginWindow()
   }
@@ -45,3 +47,5 @@ app.on('window-all-closed', () => {
 app.on('before-quit', async () => {
   await destroyDatabase()
 })
+
+export { mainBrowserWindow }

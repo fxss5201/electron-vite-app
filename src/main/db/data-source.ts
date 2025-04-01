@@ -5,7 +5,7 @@ import { app } from 'electron'
 import { join } from 'path'
 
 const database = join(app.getPath('userData'), 'database', 'database.sqlite')
-
+console.log('database', database)
 export const AppDataSource = new DataSource({
   type: 'sqlite',
   database: database,
