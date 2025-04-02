@@ -2,6 +2,7 @@ import { ipcMain } from 'electron'
 import { controllerMap } from './../db/index'
 import { pingHandle } from './handle/pingHandle'
 import chalk from 'chalk'
+import { setThemeMode, getThemeMode } from './handle/themeMode'
 
 export function addIpcMainHandleFn() {
   for (const key in controllerMap) {
@@ -17,6 +18,8 @@ export function addIpcMainHandleFn() {
   }
 
   ipcMain.handle('ping', pingHandle)
+  ipcMain.handle('setThemeMode', setThemeMode)
+  ipcMain.handle('getThemeMode', getThemeMode)
 }
 
 export function removeIpcMainHandlerFn() {
@@ -27,4 +30,6 @@ export function removeIpcMainHandlerFn() {
   }
 
   ipcMain.removeHandler('ping')
+  ipcMain.removeHandler('setThemeMode')
+  ipcMain.removeHandler('getThemeMode')
 }

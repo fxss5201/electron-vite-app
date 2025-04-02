@@ -1,5 +1,6 @@
 import store from './../stores/index'
 import createLoginWindow from './../windows/loginWindow'
+import { openExternal } from './../functional/openExternal'
 
 function createMainMenu(
   mainWindow: Electron.CrossProcessExports.BrowserWindow
@@ -140,6 +141,18 @@ function createMainMenu(
         {
           label: '关闭app',
           role: process.platform === 'darwin' ? 'close' : 'quit'
+        }
+      ]
+    },
+    {
+      label: '帮助',
+      role: 'help',
+      submenu: [
+        {
+          label: '关于',
+          click: async () => {
+            openExternal('https://github.com/fxss5201/electron-vite-app')
+          }
         }
       ]
     }

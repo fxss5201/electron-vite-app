@@ -1,28 +1,35 @@
 <template>
   <div class="page-box text-center">
     <h1>Dark Mode</h1>
-    <el-button plain @click="setDarkMode">暗黑模式</el-button>
-    <el-button plain @click="toggleDark()">切换模式</el-button>
+    <div style="padding: 18px">
+      <el-select v-model="theme" @change="changeThemeFn">
+        <el-option label="跟随系统" value="system" />
+        <el-option label="浅色模式" value="light" />
+        <el-option label="暗黑模式" value="dark" />
+      </el-select>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useDark, useToggle } from '@vueuse/core'
-import { watch } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useDark } from '@vueuse/core'
 
-const isDark = useDark()
+const theme = ref('system')
 
-const setDarkMode = () => {
-  isDark.value = true
-}
-const toggleDark = useToggle(isDark)
-
-watch(
-  () => isDark.value,
-  async (val) => {
-    window.electron.ipcRenderer.send('setDarkMode', val)
+onMounted(async () => {
+  const res = await window.electron.ipcRenderer.invoke('getThemeMode')
+  if (res) {
+    theme.value = res
   }
-)
+})
+
+const changeThemeFn = async (val) => {
+  const res = await window.electron.ipcRenderer.invoke('setThemeMode', val)
+  if (res) {
+    useDark()
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

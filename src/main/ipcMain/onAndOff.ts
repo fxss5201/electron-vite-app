@@ -7,15 +7,17 @@ import {
 } from '../functional/progressBar'
 import { startFlashFrame, stopFlashFrame } from '../functional/flashFrame'
 import { startFlashTray, stopFlashTray } from '../functional/flashTray'
-import { setDarkMode } from './onFn/setDarkMode'
 import { sendNotification } from './onFn/sendNotification'
-import { userDialogPage, removeUserDialogPageWindow, userDialogPageWindowConfirm } from './onFn/userDialogPage'
+import {
+  userDialogPage,
+  removeUserDialogPageWindow,
+  userDialogPageWindowConfirm
+} from './onFn/userDialogPage'
 
 export function addIpcMainOnFn(
   win: Electron.CrossProcessExports.BrowserWindow,
   tray: Electron.Tray
 ) {
-  ipcMain.on('setDarkMode', setDarkMode)
   ipcMain.addListener('sendNotification', sendNotification)
 
   ipcMain.addListener('startProgressBar', () => {
@@ -51,7 +53,6 @@ export function addIpcMainOnFn(
 }
 
 export function removeIpcMainOnFn() {
-  ipcMain.off('setDarkMode', setDarkMode)
   ipcMain.removeListener('sendNotification', sendNotification)
 
   ipcMain.removeAllListeners('startProgressBar')

@@ -11,15 +11,29 @@ import {
 import { resetProgressBar } from './../functional/progressBar'
 import createTray from './../tray'
 import { userDialogPageWindow } from './../ipcMain/onFn/userDialogPage'
+import store from './../stores'
+import type { BaseWindowConstructorOptions } from 'electron/main'
 
 function createMainWindow() {
-  const mainWindow = createWindow({
+  const mainWindowBounds = store.get('mainWindowBounds')
+  const mainWindowIsMaximized = store.get('mainWindowIsMaximized')
+  let mainWindowOption: BaseWindowConstructorOptions = {
     title: '主窗口',
     width: 800,
     height: 600,
     maximizable: true,
     minimizable: true
-  })
+  }
+  if (mainWindowBounds) {
+    mainWindowOption = {
+      ...mainWindowOption,
+      ...mainWindowBounds
+    }
+  }
+  const mainWindow = createWindow(mainWindowOption)
+  if (mainWindowIsMaximized) {
+    mainWindow.maximize()
+  }
 
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.webContents.send('router', {
@@ -44,6 +58,23 @@ function createMainWindow() {
     removeIpcMainOnFn()
     tray.destroy()
     userDialogPageWindow?.close()
+  })
+
+  function changeBoundsFn() {
+    const bounds = mainWindow.getBounds()
+    store.set('mainWindowBounds', bounds)
+  }
+  mainWindow.on('resized', () => {
+    changeBoundsFn()
+  })
+  mainWindow.on('moved', () => {
+    changeBoundsFn()
+  })
+  mainWindow.on('maximize', () => {
+    store.set('mainWindowIsMaximized', true)
+  })
+  mainWindow.on('unmaximize', () => {
+    store.set('mainWindowIsMaximized', false)
   })
 
   const mainMenu = createMainMenu(mainWindow)
