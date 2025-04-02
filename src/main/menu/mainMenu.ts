@@ -90,8 +90,12 @@ function createMainMenu(
               }
             })
           }
-        },
-        { type: 'separator' },
+        }
+      ]
+    },
+    {
+      label: '数据库',
+      submenu: [
         {
           label: 'sqlite',
           submenu: [

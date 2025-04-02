@@ -40,7 +40,7 @@ export function userDialogPage(_event: Electron.IpcMainEvent, val: UserDialogPag
       userDialogPageWindow = null
     })
   } else {
-    userDialogPageWindow!.webContents.send('router', {
+    userDialogPageWindow.webContents.send('router', {
       type: 'replace',
       router: {
         path: '/sqlite/userDialogPage',
@@ -49,8 +49,11 @@ export function userDialogPage(_event: Electron.IpcMainEvent, val: UserDialogPag
         }
       }
     } as RouterMessage)
-    userDialogPageWindow!.moveTop()
-    userDialogPageWindow!.focus()
+    if (userDialogPageWindow.isMinimized()) {
+      userDialogPageWindow.restore()
+    }
+    userDialogPageWindow.moveTop()
+    userDialogPageWindow.focus()
   }
 }
 

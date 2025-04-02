@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive } from 'vue'
+import { ref, onMounted, reactive, onUnmounted } from 'vue'
 import type { UserType } from '@renderer/types/userType'
 
 const loading = ref(false)
@@ -50,6 +50,9 @@ const currentPage = ref(1)
 const userList = ref<UserType[]>([])
 onMounted(() => {
   getUserList()
+})
+onUnmounted(() => {
+  window.electron.ipcRenderer.send('removeUserDialogPageWindow')
 })
 
 async function getUserList() {

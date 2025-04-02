@@ -9,7 +9,6 @@ import {
   removeIpcMainOnFn
 } from './../ipcMain/index'
 import { resetProgressBar } from './../functional/progressBar'
-import registryShortcut from './../functional/registryShortcut'
 import createTray from './../tray'
 import { userDialogPageWindow } from './../ipcMain/onFn/userDialogPage'
 
@@ -29,8 +28,6 @@ function createMainWindow() {
         path: '/home'
       }
     } as RouterMessage)
-
-    registryShortcut()
   })
 
   ipcMain.once('open-window', () => {

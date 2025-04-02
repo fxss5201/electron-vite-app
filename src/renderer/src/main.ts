@@ -8,6 +8,12 @@ import log from 'electron-log/renderer'
 import type { RouterMessage } from './types/routerType'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import * as Sentry from '@sentry/electron/renderer'
+
+Sentry.init({
+  environment: import.meta.env.MODE,
+  integrations: []
+})
 
 log.info('Log from the renderer process')
 

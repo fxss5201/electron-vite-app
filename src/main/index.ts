@@ -8,6 +8,13 @@ import store from './stores'
 import { connectToDatabase, destroyDatabase } from './db/index'
 import chalk from 'chalk'
 import debug from 'electron-debug'
+import * as Sentry from '@sentry/electron/main'
+import { registerShortcut, unregisterShortcut } from './functional/registryShortcut'
+
+Sentry.init({
+  dsn: 'https://65685402eaa68980f7d1f8db3cd1fa44@o412908.ingest.us.sentry.io/4509081523519493',
+  environment: app.isPackaged ? 'production' : 'development'
+})
 
 chalk.level = 1
 
@@ -25,6 +32,7 @@ function createWindow() {
   } else {
     createLoginWindow()
   }
+  registerShortcut()
 }
 
 app.whenReady().then(async () => {
@@ -45,6 +53,7 @@ app.on('window-all-closed', () => {
 })
 
 app.on('before-quit', async () => {
+  unregisterShortcut()
   await destroyDatabase()
 })
 
