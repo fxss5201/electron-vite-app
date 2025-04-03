@@ -68,6 +68,8 @@ const exampleRoutes = [
   }
 ]
 
+export const mainRoutes = []
+
 export const routes = [
   {
     path: '/',
@@ -84,11 +86,12 @@ export const routes = [
   },
   {
     path: '/home',
-    name: 'Home',
-    component: () => import('@renderer/views/Home.vue'),
+    name: 'MainLayout',
+    component: () => import('@renderer/views/main/MainLayout.vue'),
     meta: {
       title: '首页'
-    }
+    },
+    children: mainRoutes
   },
   ...exampleRoutes,
   {

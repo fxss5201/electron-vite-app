@@ -7,7 +7,9 @@ const store = new Store<StoreType>({
     user: {
       account: '',
       password: ''
-    }
+    },
+    theme: 'system',
+    taskbarPosition: 'left'
   }
   // encryptionKey: 'secret'
 })
