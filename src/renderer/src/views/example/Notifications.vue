@@ -1,5 +1,5 @@
 <template>
-  <div class="page-box text-center">
+  <div class="text-center">
     <h1>Notifications</h1>
     <el-form :model="form" label-width="auto" style="width: 600px; margin: 0 auto">
       <el-form-item label="通知标题">
@@ -27,5 +27,3 @@ const onSubmit = () => {
   window.electron.ipcRenderer.send('sendNotification', toRaw(form))
 }
 </script>
-
-<style lang="scss" scoped></style>

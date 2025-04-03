@@ -9,15 +9,13 @@
       class="my-alert"
     />
     <router-view v-slot="{ Component }">
-      <transition>
-        <keep-alive :include="componentNames">
-          <Suspense>
-            <component :is="Component" />
+      <keep-alive :include="componentNames">
+        <Suspense>
+          <component :is="Component" />
 
-            <template #fallback> 正在加载... </template>
-          </Suspense>
-        </keep-alive>
-      </transition>
+          <template #fallback> 正在加载... </template>
+        </Suspense>
+      </keep-alive>
     </router-view>
   </el-config-provider>
 </template>

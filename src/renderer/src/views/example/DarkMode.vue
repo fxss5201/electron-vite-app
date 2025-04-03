@@ -1,5 +1,5 @@
 <template>
-  <div class="page-box text-center">
+  <div class="text-center">
     <h1>Dark Mode</h1>
     <div style="padding: 18px">
       <el-select v-model="theme" @change="changeThemeFn">
@@ -31,5 +31,3 @@ const changeThemeFn = async (val) => {
   }
 }
 </script>
-
-<style lang="scss" scoped></style>

@@ -58,14 +58,10 @@ export function userDialogPage(_event: Electron.IpcMainEvent, val: UserDialogPag
 }
 
 export function removeUserDialogPageWindow() {
-  if (userDialogPageWindow) {
-    userDialogPageWindow.close()
-  }
+  userDialogPageWindow?.destroy()
 }
 
 export function userDialogPageWindowConfirm() {
   mainBrowserWindow!.webContents.send('userDialogPageConfirm')
-  if (userDialogPageWindow) {
-    userDialogPageWindow.close()
-  }
+  userDialogPageWindow?.destroy()
 }

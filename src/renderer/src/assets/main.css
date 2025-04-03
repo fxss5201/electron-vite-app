@@ -1,3 +1,7 @@
+@layer theme, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -19,6 +23,7 @@ body,
   margin: 0;
   width: 100vw;
   overflow-x: hidden;
+  overflow-y: auto;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -35,33 +40,4 @@ body,
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
   }
-}
-
-.page-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.page-box {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.w-full {
-  width: 100%;
-}
-.h-full {
-  height: 100%;
-}
-.w-full-w {
-  width: 100vw;
-}
-.h-full-h {
-  height: 100vh;
 }

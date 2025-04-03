@@ -14,5 +14,3 @@ const goHome = () => {
   router.push('/home')
 }
 </script>
-
-<style lang="scss" scoped></style>

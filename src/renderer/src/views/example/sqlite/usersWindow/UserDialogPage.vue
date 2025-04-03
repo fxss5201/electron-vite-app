@@ -97,5 +97,3 @@ async function getUserById() {
   form.value = res
 }
 </script>
-
-<style lang="scss" scoped></style>

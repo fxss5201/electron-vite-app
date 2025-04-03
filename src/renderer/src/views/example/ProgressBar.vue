@@ -1,5 +1,5 @@
 <template>
-  <div class="page-box text-center">
+  <div class="text-center">
     <h1>progress-bar</h1>
     <p>任务栏图标上的进度条</p>
     <el-button plain @click="startProgressBarFn">开始</el-button>
@@ -26,5 +26,3 @@ function resetProgressBarFn() {
   window.electron.ipcRenderer.send('resetProgressBar')
 }
 </script>
-
-<style lang="scss" scoped></style>

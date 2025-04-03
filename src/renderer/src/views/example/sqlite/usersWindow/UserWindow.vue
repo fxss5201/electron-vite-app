@@ -1,39 +1,37 @@
 <template>
-  <div class="page-box">
-    <el-form :inline="true" :model="queryForm" style="margin: 18px 0 0 18px">
-      <el-form-item label="名称">
-        <el-input v-model="queryForm.name" placeholder="名称" clearable style="width: 180px" />
-      </el-form-item>
-      <el-form-item>
-        <el-button plain @click="getUserList">搜索</el-button>
-        <el-button plain @click="addUserFn">新增用户</el-button>
-      </el-form-item>
-    </el-form>
-    <el-table v-loading="loading" :data="userList">
-      <el-table-column prop="id" label="ID" />
-      <el-table-column prop="name" label="姓名" />
-      <el-table-column prop="age" label="年龄" />
-      <el-table-column label="操作">
-        <template #default="scope">
-          <el-button link type="primary" size="small" @click="toDetailEvent(scope.row)"
-            >编辑</el-button
-          >
-          <el-popconfirm title="确定删除？" @confirm="deleteEvent(scope.row)">
-            <template #reference>
-              <el-button link type="danger" size="small">删除</el-button>
-            </template>
-          </el-popconfirm>
-        </template>
-      </el-table-column>
-    </el-table>
-    <el-pagination
-      background
-      layout="sizes, prev, pager, next, jumper, total"
-      :total="total"
-      style="margin: 18px"
-      @change="pageChangeFn"
-    />
-  </div>
+  <el-form :inline="true" :model="queryForm" style="margin: 18px 0 0 18px">
+    <el-form-item label="名称">
+      <el-input v-model="queryForm.name" placeholder="名称" clearable style="width: 180px" />
+    </el-form-item>
+    <el-form-item>
+      <el-button plain @click="getUserList">搜索</el-button>
+      <el-button plain @click="addUserFn">新增用户</el-button>
+    </el-form-item>
+  </el-form>
+  <el-table v-loading="loading" :data="userList">
+    <el-table-column prop="id" label="ID" />
+    <el-table-column prop="name" label="姓名" />
+    <el-table-column prop="age" label="年龄" />
+    <el-table-column label="操作">
+      <template #default="scope">
+        <el-button link type="primary" size="small" @click="toDetailEvent(scope.row)"
+          >编辑</el-button
+        >
+        <el-popconfirm title="确定删除？" @confirm="deleteEvent(scope.row)">
+          <template #reference>
+            <el-button link type="danger" size="small">删除</el-button>
+          </template>
+        </el-popconfirm>
+      </template>
+    </el-table-column>
+  </el-table>
+  <el-pagination
+    background
+    layout="sizes, prev, pager, next, jumper, total"
+    :total="total"
+    style="margin: 18px"
+    @change="pageChangeFn"
+  />
 </template>
 
 <script setup lang="ts">

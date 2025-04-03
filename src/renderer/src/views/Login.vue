@@ -1,8 +1,8 @@
 <template>
-  <div class="page-center">
-    <div class="logo-page">
-      <div class="logo-icon-box">
-        <img class="logo-icon" :src="logo" alt="logo" />
+  <div class="flex h-screen items-center justify-center">
+    <div class="w-full px-12">
+      <div class="my-6 flex justify-center">
+        <img class="h-17 w-17" :src="logo" alt="logo" />
       </div>
       <el-form ref="formRef" :model="form" :rules="rules" label-width="auto" class="w-full">
         <el-form-item prop="account" label="账号">
@@ -80,21 +80,3 @@ onKeyStroke('Enter', () => {
   submitForm(formRef.value)
 })
 </script>
-
-<style lang="scss" scoped>
-.logo-page {
-  width: 100%;
-  padding: 0 48px;
-}
-.logo-icon-box {
-  width: 100%;
-  margin: 24px 0;
-  display: flex;
-  justify-content: center;
-
-  .logo-icon {
-    width: 68px;
-    height: 68px;
-  }
-}
-</style>
