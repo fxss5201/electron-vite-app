@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useKeepAliveStore = defineStore(
-  'keepAlive',
+  'keepAliveStore',
   () => {
     const componentNames = ref<string[]>([])
 

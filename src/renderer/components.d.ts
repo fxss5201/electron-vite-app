@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ElAlert: typeof import('element-plus/es')['ElAlert']
+    ElBadge: typeof import('element-plus/es')['ElBadge']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElForm: typeof import('element-plus/es')['ElForm']
@@ -22,11 +23,14 @@ declare module 'vue' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
     IconSvg: typeof import('./src/components/IconSvg.vue')['default']
     LayoutWrap: typeof import('./src/components/LayoutWrap.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TaskbarLayout: typeof import('./src/components/TaskbarLayout.vue')['default']
+    TaskbarMenu: typeof import('./src/components/TaskbarMenu.vue')['default']
     Versions: typeof import('./src/components/Versions.vue')['default']
   }
   export interface ComponentCustomProperties {

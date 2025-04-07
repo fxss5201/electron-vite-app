@@ -35,7 +35,6 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
-    "@imengyu/vue3-context-menu": "^1.4.6",
     "@sentry/electron": "^6.3.0",
     "@swc/core": "^1.11.13",
     "chalk": "^5.4.1",
@@ -53,6 +52,8 @@
     "@electron-toolkit/eslint-config-ts": "^3.0.0",
     "@electron-toolkit/tsconfig": "^1.0.1",
     "@element-plus/icons-vue": "^2.3.1",
+    "@icon-park/vue-next": "^1.4.2",
+    "@imengyu/vue3-context-menu": "^1.4.6",
     "@tailwindcss/vite": "^4.1.1",
     "@types/node": "^22.13.4",
     "@vitejs/plugin-vue": "^5.2.1",

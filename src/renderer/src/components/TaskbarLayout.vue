@@ -7,7 +7,7 @@
     <div :style="taskbarSizeStyle" class="shrink-0">
       <slot name="taskbar" />
     </div>
-    <div class="flex-auto">
+    <div class="flex-auto overflow-x-hidden overflow-y-auto">
       <slot />
     </div>
   </div>
@@ -16,7 +16,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import ContextMenu from '@imengyu/vue3-context-menu'
-import type { TaskbarPositionType } from '@renderer/types/layout'
+import type { TaskbarPositionType } from '@renderer/types/setting'
+import { useSettingStore } from '@renderer/stores/settingStore'
+import { storeToRefs } from 'pinia'
 
 interface Props {
   taskbarPosition?: TaskbarPositionType
@@ -44,6 +46,10 @@ const taskbarSizeMap = {
 const taskbarSizeStyle = computed(() => {
   return taskbarSizeMap[taskbarPosition]
 })
+
+const settingStore = useSettingStore()
+const { setting } = storeToRefs(settingStore)
+const { setSettingTaskbarPosition } = settingStore
 
 const menus = computed(() => {
   return [
@@ -90,14 +96,11 @@ const onContextMenu = (e: MouseEvent) => {
   ContextMenu.showContextMenu({
     x: e.clientX,
     y: e.clientY,
+    theme: setting.value.theme,
     items: menus.value
   })
 }
-const emit = defineEmits<{
-  getTaskbarPosition: []
-}>()
 const changeTaskbarPosition = async (position: TaskbarPositionType) => {
-  await window.electron.ipcRenderer.invoke('setTaskbarPosition', position)
-  emit('getTaskbarPosition')
+  await setSettingTaskbarPosition(position)
 }
 </script>

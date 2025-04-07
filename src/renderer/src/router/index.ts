@@ -68,7 +68,24 @@ const exampleRoutes = [
   }
 ]
 
-export const mainRoutes = []
+export const mainRoutes = [
+  {
+    path: '/home/homeView',
+    name: 'HomeView',
+    component: () => import('@renderer/views/main/HomeView.vue'),
+    meta: {
+      title: '首页'
+    }
+  },
+  {
+    path: '/home/settingView',
+    name: 'SettingView',
+    component: () => import('@renderer/views/main/SettingView.vue'),
+    meta: {
+      title: '设置'
+    }
+  }
+]
 
 export const routes = [
   {
@@ -87,6 +104,7 @@ export const routes = [
   {
     path: '/home',
     name: 'MainLayout',
+    redirect: '/home/homeView',
     component: () => import('@renderer/views/main/MainLayout.vue'),
     meta: {
       title: '首页'
