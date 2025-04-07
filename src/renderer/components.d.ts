@@ -26,6 +26,7 @@ declare module 'vue' {
     LayoutWrap: typeof import('./src/components/LayoutWrap.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TaskbarLayout: typeof import('./src/components/TaskbarLayout.vue')['default']
     Versions: typeof import('./src/components/Versions.vue')['default']
   }
   export interface ComponentCustomProperties {

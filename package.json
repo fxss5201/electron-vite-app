@@ -35,6 +35,7 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
+    "@imengyu/vue3-context-menu": "^1.4.6",
     "@sentry/electron": "^6.3.0",
     "@swc/core": "^1.11.13",
     "chalk": "^5.4.1",

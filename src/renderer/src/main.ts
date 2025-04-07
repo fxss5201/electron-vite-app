@@ -8,6 +8,8 @@ import log from 'electron-log/renderer'
 import type { RouterMessage } from './types/routerType'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
+import ContextMenu from '@imengyu/vue3-context-menu'
 import * as Sentry from '@sentry/electron/renderer'
 
 Sentry.init({
@@ -22,6 +24,7 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 app.use(router)
 app.use(pinia)
+app.use(ContextMenu)
 app.mount('#app')
 
 window.electron.ipcRenderer.on('router', (_event, message: RouterMessage) => {
