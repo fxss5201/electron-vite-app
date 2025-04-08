@@ -75,7 +75,7 @@ autoUpdater.on('update-available', (releaseInfo: UpdateInfo) => {
 })
 
 ipcMain.on('updateDownload', () => {
-  if (!downloadWin) {
+  if (!downloadWin || downloadWin?.isDestroyed()) {
     downloadWin = createWindow({
       title: '主窗口',
       width: 350,
@@ -117,7 +117,8 @@ autoUpdater.on('update-not-available', (releaseInfo: UpdateInfo) => {
 // 更新下载进度
 autoUpdater.on('download-progress', (progress) => {
   log.info('下载进度', progress)
-  downloadWin!.webContents.send('downloadProgress', progress.percent)
+  if (downloadWin?.isDestroyed()) return
+  downloadWin?.webContents.send('downloadProgress', progress.percent)
 })
 
 // 当需要更新的内容下载完成后
