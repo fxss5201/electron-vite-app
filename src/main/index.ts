@@ -27,8 +27,10 @@ debug()
 
 function createWindow() {
   if (store.get('user').account) {
-    createMainWindow()
-    checkUpdate()
+    const mainWin = createMainWindow()
+    mainWin.webContents.on('did-finish-load', () => {
+      checkUpdate()
+    })
   } else {
     createLoginWindow()
   }
