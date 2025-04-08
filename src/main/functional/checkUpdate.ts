@@ -7,6 +7,7 @@ import createWindow from './createWindow'
 import type { RouterMessage } from './../types/routerTypes'
 import { mainBrowserWindow } from './../index'
 import dayjs from 'dayjs'
+import { CronJob } from 'cron'
 
 type checkUpdateFromType = 'system' | 'user'
 let checkUpdateFrom: checkUpdateFromType = 'system'
@@ -134,6 +135,20 @@ autoUpdater.on('update-downloaded', () => {
       setImmediate(() => autoUpdater.quitAndInstall())
     })
 })
+
+// 每1小时检查一次更新
+new CronJob(
+  '0 0 * * * *',
+  () => {
+    if (mainBrowserWindow) {
+      checkUpdateFrom = 'system'
+      checkUpdate()
+    }
+  },
+  null,
+  true,
+  'Asia/Shanghai'
+)
 
 export function checkUpdate() {
   autoUpdater.checkForUpdates()

@@ -38,6 +38,7 @@
     "@sentry/electron": "^6.3.0",
     "@swc/core": "^1.11.13",
     "chalk": "^5.4.1",
+    "cron": "^4.1.4",
     "dayjs": "^1.11.13",
     "electron-debug": "^4.1.0",
     "electron-squirrel-startup": "^1.0.1",
