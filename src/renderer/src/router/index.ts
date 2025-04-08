@@ -102,6 +102,14 @@ export const routes = [
     }
   },
   {
+    path: '/downloadView',
+    name: 'DownloadView',
+    component: () => import('@renderer/views/DownloadView.vue'),
+    meta: {
+      title: '下载'
+    }
+  },
+  {
     path: '/home',
     name: 'MainLayout',
     redirect: '/home/homeView',

@@ -1,5 +1,6 @@
 import { ipcMain, Menu } from 'electron'
 import createWindow from './../functional/createWindow'
+import { checkUpdate } from './../functional/checkUpdate'
 import type { RouterMessage } from './../types/routerTypes'
 import createMainMenu from './../menu/mainMenu'
 import {
@@ -43,6 +44,8 @@ function createMainWindow() {
         path: '/home'
       }
     } as RouterMessage)
+
+    checkUpdate()
   })
 
   ipcMain.once('open-window', () => {

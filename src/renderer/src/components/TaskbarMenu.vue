@@ -6,7 +6,7 @@
     <div class="flex-auto"></div>
     <div class="shrink-0">
       <div class="cursor-pointer rounded-[6px] p-2 hover:bg-gray-500" @click="goSettingViewFn">
-        <el-badge>
+        <el-badge :is-dot="dotShow">
           <setting-two :size="18" />
         </el-badge>
       </div>
@@ -20,6 +20,7 @@ import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useSettingStore } from '@renderer/stores/settingStore'
 import { SettingTwo } from '@icon-park/vue-next'
+import { useVersionStore } from '@renderer/stores/versionStore'
 
 const router = useRouter()
 const settingStore = useSettingStore()
@@ -34,6 +35,15 @@ const menuClass = computed(() => {
 })
 
 function goSettingViewFn() {
-  router.push({ name: 'SettingView' })
+  router.push({ name: 'SettingView', query: { tab: canUpdate.value ? '1' : '0' } })
 }
+const versionStore = useVersionStore()
+const { versionInfo } = storeToRefs(versionStore)
+
+const canUpdate = computed(() => {
+  return versionInfo.value?.shouldUpdate ?? false
+})
+const dotShow = computed(() => {
+  return canUpdate.value
+})
 </script>

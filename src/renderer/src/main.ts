@@ -14,6 +14,8 @@ import '@icon-park/vue-next/styles/index.css'
 import * as Sentry from '@sentry/electron/renderer'
 import { useSettingStore } from '@renderer/stores/settingStore'
 import type { SettingType } from '@renderer/types/setting'
+import { useVersionStore } from '@renderer/stores/versionStore'
+import type { versionType } from '@renderer/types/versionType'
 
 Sentry.init({
   environment: import.meta.env.MODE,
@@ -33,13 +35,13 @@ app.mount('#app')
 window.electron.ipcRenderer.on('router', (_event, message: RouterMessage) => {
   router[message.type](message.router)
 })
-
-let theme: SettingType['theme'] | null = null
-let taskbarPosition: SettingType['taskbarPosition'] | null = null
-
+window.electron.ipcRenderer.on('updateAvailable', (_event, versionInfo: versionType) => {
+  const versionStore = useVersionStore()
+  versionStore.setVersionInfo(versionInfo)
+})
 ;(async () => {
-  theme = (await window.electron.ipcRenderer.invoke('getThemeMode')) as SettingType['theme']
-  taskbarPosition = (await window.electron.ipcRenderer.invoke(
+  const theme = (await window.electron.ipcRenderer.invoke('getThemeMode')) as SettingType['theme']
+  const taskbarPosition = (await window.electron.ipcRenderer.invoke(
     'getTaskbarPosition'
   )) as SettingType['taskbarPosition']
 

@@ -1,7 +1,6 @@
 import { app, BrowserWindow } from 'electron'
 import started from 'electron-squirrel-startup'
 import './functional/log'
-// import './functional/checkUpdate'
 import createLoginWindow from './windows/loginWindow'
 import createMainWindow from './windows/mainWindow'
 import store from './stores'

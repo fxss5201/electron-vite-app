@@ -48,9 +48,18 @@ const currentPage = ref(1)
 const userList = ref<UserType[]>([])
 onMounted(() => {
   getUserList()
+  window.electron.ipcRenderer.on('userDialogPageClose', () => {
+    dialogVisible.value = false
+  })
+  window.electron.ipcRenderer.on('userDialogPageConfirm', () => {
+    getUserList()
+    dialogVisible.value = false
+  })
 })
 onUnmounted(() => {
   window.electron.ipcRenderer.send('removeUserDialogPageWindow')
+  window.electron.ipcRenderer.removeAllListeners('userDialogPageClose')
+  window.electron.ipcRenderer.removeAllListeners('userDialogPageConfirm')
 })
 
 async function getUserList() {
@@ -78,13 +87,6 @@ function addUserFn() {
   dialogVisible.value = true
   window.electron.ipcRenderer.send('userDialogPage', {})
 }
-window.electron.ipcRenderer.on('userDialogPageClose', () => {
-  dialogVisible.value = false
-})
-window.electron.ipcRenderer.on('userDialogPageConfirm', () => {
-  getUserList()
-  dialogVisible.value = false
-})
 
 function toDetailEvent(row: UserType) {
   dialogVisible.value = true
