@@ -1,6 +1,7 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import started from 'electron-squirrel-startup'
 import './functional/log'
+import { checkUpdate } from './functional/checkUpdate'
 import createLoginWindow from './windows/loginWindow'
 import createMainWindow from './windows/mainWindow'
 import store from './stores'
@@ -9,6 +10,7 @@ import chalk from 'chalk'
 import debug from 'electron-debug'
 import * as Sentry from '@sentry/electron/main'
 import { registerShortcut, unregisterShortcut } from './functional/registryShortcut'
+import { setThemeMode, getThemeMode } from './ipcMain/handle/themeMode'
 
 Sentry.init({
   dsn: 'https://65685402eaa68980f7d1f8db3cd1fa44@o412908.ingest.us.sentry.io/4509081523519493',
@@ -23,11 +25,10 @@ if (started) {
 
 debug()
 
-let mainBrowserWindow: BrowserWindow | null = null
-
 function createWindow() {
   if (store.get('user').account) {
-    mainBrowserWindow = createMainWindow()
+    createMainWindow()
+    checkUpdate()
   } else {
     createLoginWindow()
   }
@@ -43,6 +44,9 @@ app.whenReady().then(async () => {
       createWindow()
     }
   })
+
+  ipcMain.handle('setThemeMode', setThemeMode)
+  ipcMain.handle('getThemeMode', getThemeMode)
 })
 
 app.on('window-all-closed', () => {
@@ -53,7 +57,9 @@ app.on('window-all-closed', () => {
 
 app.on('before-quit', async () => {
   unregisterShortcut()
+
+  ipcMain.removeHandler('setThemeMode')
+  ipcMain.removeHandler('getThemeMode')
+
   await destroyDatabase()
 })
-
-export { mainBrowserWindow }

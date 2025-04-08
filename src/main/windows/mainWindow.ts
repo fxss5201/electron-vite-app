@@ -1,6 +1,5 @@
 import { ipcMain, Menu } from 'electron'
 import createWindow from './../functional/createWindow'
-import { checkUpdate } from './../functional/checkUpdate'
 import type { RouterMessage } from './../types/routerTypes'
 import createMainMenu from './../menu/mainMenu'
 import {
@@ -14,6 +13,8 @@ import createTray from './../tray'
 import { userDialogPageWindow } from './../ipcMain/onFn/userDialogPage'
 import store from './../stores'
 import type { BaseWindowConstructorOptions } from 'electron/main'
+
+let mainBrowserWindow: Electron.BrowserWindow | null = null
 
 function createMainWindow() {
   const mainWindowBounds = store.get('mainWindowBounds')
@@ -44,8 +45,6 @@ function createMainWindow() {
         path: '/home'
       }
     } as RouterMessage)
-
-    checkUpdate()
   })
 
   ipcMain.once('open-window', () => {
@@ -84,7 +83,10 @@ function createMainWindow() {
   const mainMenu = createMainMenu(mainWindow)
   Menu.setApplicationMenu(Menu.buildFromTemplate(mainMenu))
 
+  mainBrowserWindow = mainWindow
   return mainWindow
 }
+
+export { mainBrowserWindow }
 
 export default createMainWindow

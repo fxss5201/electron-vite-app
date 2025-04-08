@@ -32,6 +32,24 @@ app.use(pinia)
 app.use(ContextMenu)
 app.mount('#app')
 
+let themeFlag = false
+let taskbarPositionFlag = false
+const settingStore = useSettingStore()
+router.beforeEach(async (to) => {
+  if (!themeFlag) {
+    themeFlag = true
+    const theme = (await window.electron.ipcRenderer.invoke('getThemeMode')) as SettingType['theme']
+    settingStore.setSettingThemeStore(theme)
+  }
+  if (to.path.includes('/home') && !taskbarPositionFlag) {
+    taskbarPositionFlag = true
+    const taskbarPosition = (await window.electron.ipcRenderer.invoke(
+      'getTaskbarPosition'
+    )) as SettingType['taskbarPosition']
+    settingStore.setSettingTaskbarPositionStore(taskbarPosition)
+  }
+})
+
 window.electron.ipcRenderer.on('router', (_event, message: RouterMessage) => {
   router[message.type](message.router)
 })
@@ -39,12 +57,3 @@ window.electron.ipcRenderer.on('updateAvailable', (_event, versionInfo: versionT
   const versionStore = useVersionStore()
   versionStore.setVersionInfo(versionInfo)
 })
-;(async () => {
-  const theme = (await window.electron.ipcRenderer.invoke('getThemeMode')) as SettingType['theme']
-  const taskbarPosition = (await window.electron.ipcRenderer.invoke(
-    'getTaskbarPosition'
-  )) as SettingType['taskbarPosition']
-
-  const settingStore = useSettingStore()
-  settingStore.setSetting({ theme, taskbarPosition })
-})()

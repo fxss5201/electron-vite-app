@@ -5,7 +5,7 @@ import { autoUpdater, UpdateInfo } from 'electron-updater'
 import log from 'electron-log/main'
 import createWindow from './createWindow'
 import type { RouterMessage } from './../types/routerTypes'
-import { mainBrowserWindow } from './../index'
+import { mainBrowserWindow } from './../windows/mainWindow'
 import dayjs from 'dayjs'
 import { CronJob } from 'cron'
 
@@ -140,7 +140,7 @@ autoUpdater.on('update-downloaded', () => {
 new CronJob(
   '0 0 * * * *',
   () => {
-    if (mainBrowserWindow) {
+    if (mainBrowserWindow && !mainBrowserWindow?.isDestroyed()) {
       checkUpdateFrom = 'system'
       checkUpdate()
     }
@@ -152,5 +152,7 @@ new CronJob(
 
 export function checkUpdate() {
   autoUpdater.checkForUpdates()
-  mainBrowserWindow!.webContents.send('updateAvailable', updateMessage)
+  setTimeout(() => {
+    mainBrowserWindow!.webContents.send('updateAvailable', updateMessage)
+  })
 }

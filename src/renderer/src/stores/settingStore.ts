@@ -14,9 +14,17 @@ export const useSettingStore = defineStore(
       setting.value = val
     }
 
+    function setSettingThemeStore(val: SettingType['theme']) {
+      setting.value.theme = val
+    }
+
     async function setSettingTheme(val: SettingType['theme']) {
       await window.electron.ipcRenderer.invoke('setThemeMode', val)
       setting.value.theme = val
+    }
+
+    function setSettingTaskbarPositionStore(val: SettingType['taskbarPosition']) {
+      setting.value.taskbarPosition = val
     }
 
     async function setSettingTaskbarPosition(val: SettingType['taskbarPosition']) {
@@ -28,7 +36,9 @@ export const useSettingStore = defineStore(
       setting,
       setSetting,
       setSettingTheme,
-      setSettingTaskbarPosition
+      setSettingThemeStore,
+      setSettingTaskbarPosition,
+      setSettingTaskbarPositionStore
     }
   },
   {

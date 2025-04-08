@@ -1,6 +1,6 @@
 import createWindow from './../../functional/createWindow'
 import type { RouterMessage } from './../../types/routerTypes'
-import { mainBrowserWindow } from './../../index'
+import { mainBrowserWindow } from './../../windows/mainWindow'
 
 let userDialogPageWindow: Electron.BrowserWindow | null = null
 

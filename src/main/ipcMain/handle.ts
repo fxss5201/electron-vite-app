@@ -2,7 +2,6 @@ import { ipcMain } from 'electron'
 import { controllerMap } from './../db/index'
 import { pingHandle } from './handle/pingHandle'
 import chalk from 'chalk'
-import { setThemeMode, getThemeMode } from './handle/themeMode'
 import { setTaskbarPosition, getTaskbarPosition } from './handle/taskbarPosition'
 
 export function addIpcMainHandleFn() {
@@ -19,8 +18,6 @@ export function addIpcMainHandleFn() {
   }
 
   ipcMain.handle('ping', pingHandle)
-  ipcMain.handle('setThemeMode', setThemeMode)
-  ipcMain.handle('getThemeMode', getThemeMode)
   ipcMain.handle('setTaskbarPosition', setTaskbarPosition)
   ipcMain.handle('getTaskbarPosition', getTaskbarPosition)
 }
@@ -33,8 +30,6 @@ export function removeIpcMainHandlerFn() {
   }
 
   ipcMain.removeHandler('ping')
-  ipcMain.removeHandler('setThemeMode')
-  ipcMain.removeHandler('getThemeMode')
   ipcMain.removeHandler('setTaskbarPosition')
   ipcMain.removeHandler('getTaskbarPosition')
 }
