@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.6](https://github.com/fxss5201/electron-vite-app/compare/v0.0.5...v0.0.6) (2025-04-08)
+
+
+### Features
+
+* 代码优化，增加 Sentry ([6e03f3d](https://github.com/fxss5201/electron-vite-app/commit/6e03f3d9980db1235bc6648b77600aa2bce3d269))
+* 任务栏 ([49b5256](https://github.com/fxss5201/electron-vite-app/commit/49b525628b971a3c432eadd5a5cc69c149a38f7e))
+* 任务栏右键设置位置 ([77105eb](https://github.com/fxss5201/electron-vite-app/commit/77105eb5b8c3abfb3bbca137aa204617815c34a3))
+* 设置页面 ([800ef9d](https://github.com/fxss5201/electron-vite-app/commit/800ef9d2ead0b5ad1b3fc38a2785f5afba48308e))
+* 下载更新 ([3a0d23d](https://github.com/fxss5201/electron-vite-app/commit/3a0d23d17d70bebb28a5bf4cc760f5823b0b2617))
+* 新增编辑弹窗采用 BrowserWindow ([1361e83](https://github.com/fxss5201/electron-vite-app/commit/1361e83c429ee6b8bc71a85c68b17d095ff65a75))
+* 修改 prettierrc 配置 ([9bfecb8](https://github.com/fxss5201/electron-vite-app/commit/9bfecb8dadaff9b7a90ab57ab06ce34f89113384))
+* 样式采用 tailwindcss ([b5dfc99](https://github.com/fxss5201/electron-vite-app/commit/b5dfc99de7d3a077ce374c3d7e7fcb7c78701d0a))
+* 用户 BrowserWindow 更新 ([d70a98f](https://github.com/fxss5201/electron-vite-app/commit/d70a98f407d6dd001744d5906367664b6c02d983))
+* 优化暗黑模式，增加主应用的位置大小记录 ([c02fcfe](https://github.com/fxss5201/electron-vite-app/commit/c02fcfe1956f869276769f80a21ac7e7d4b54eab))
+* 只支持 ESM 的模块进行配置 ([7ee7e90](https://github.com/fxss5201/electron-vite-app/commit/7ee7e90c2f533ee601ef5c062234927d5417ad1b))
+* chalk ([b47cca6](https://github.com/fxss5201/electron-vite-app/commit/b47cca62d26452ae4469d8c1ad0a061864f3c183))
+* typeorm 迁移待解决 ([60f76b0](https://github.com/fxss5201/electron-vite-app/commit/60f76b0159ea45e4d255fbf1fbfbcb1f15442a96))
+* typeorm 数据迁移可生成、执行 ([408f4b7](https://github.com/fxss5201/electron-vite-app/commit/408f4b7425855f08940e136337202fc0d1515859))
+
+
+### Bug Fixes
+
+* 修复更新报错 ([f1657eb](https://github.com/fxss5201/electron-vite-app/commit/f1657ebdca1e87872f784fde91ce3d35242693fe))
+
 ## [0.0.5](https://github.com/fxss5201/electron-vite-app/compare/v0.0.4...v0.0.5) (2025-03-26)
 
 
