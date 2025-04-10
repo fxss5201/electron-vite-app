@@ -123,6 +123,27 @@ function createMainMenu(
               }
             }
           ]
+        },
+        {
+          label: 'indexedDB',
+          submenu: [
+            {
+              label: 'dexie',
+              submenu: [
+                {
+                  label: '用户列表',
+                  click: () => {
+                    mainWindow.webContents.send('router', {
+                      type: 'replace',
+                      router: {
+                        path: '/indexedDB/dexie/userList'
+                      }
+                    })
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },

@@ -65,6 +65,14 @@ const exampleRoutes = [
     meta: {
       title: '用户信息'
     }
+  },
+  {
+    path: '/indexedDB/dexie/userList',
+    name: 'UserListDexie',
+    component: () => import('@renderer/views/example/indexedDB/dexie/users/UserListDexie.vue'),
+    meta: {
+      title: '用户列表'
+    }
   }
 ]
 

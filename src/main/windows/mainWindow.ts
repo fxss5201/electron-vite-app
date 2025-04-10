@@ -24,8 +24,7 @@ function createMainWindow() {
     width: 800,
     height: 600,
     maximizable: true,
-    minimizable: true,
-    autoHideMenuBar: true
+    minimizable: true
   }
   if (mainWindowBounds) {
     mainWindowOption = {
