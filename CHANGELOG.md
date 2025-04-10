@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.8](https://github.com/fxss5201/electron-vite-app/compare/v0.0.7...v0.0.8) (2025-04-10)
+
+
+### Features
+
+* dexie 删除操作 ([a7895be](https://github.com/fxss5201/electron-vite-app/commit/a7895be7ee140387e5ce9cd4bb341f50e032dac2))
+* indexedDB 数据库保存数据 ([9135edc](https://github.com/fxss5201/electron-vite-app/commit/9135edc7be92651b2a213a6c61d727affd0a0e0c))
+
 ## [0.0.7](https://github.com/fxss5201/electron-vite-app/compare/v0.0.6...v0.0.7) (2025-04-09)
 
 
