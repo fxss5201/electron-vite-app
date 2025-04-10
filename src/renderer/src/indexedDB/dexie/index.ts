@@ -37,5 +37,5 @@ export async function dbUpdateUser(user: User) {
 }
 
 export async function dbDeleteUser(id: number) {
-  await db.users.delete(id)
+  return await db.users.delete(id)
 }
