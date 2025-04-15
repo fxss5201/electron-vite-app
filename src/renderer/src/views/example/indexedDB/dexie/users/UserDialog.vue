@@ -25,7 +25,7 @@
 
 <script lang="ts" setup>
 import { ref, reactive, watch } from 'vue'
-import type { UserType } from '@renderer/types/userType'
+import type { User } from '@renderer/indexedDB/dexie/User'
 import type { FormInstance, FormRules } from 'element-plus'
 import { dbGetUser, dbAddUser, dbUpdateUser } from '@renderer/indexedDB/dexie/index'
 
@@ -75,11 +75,11 @@ async function addUserFn() {
 }
 
 const formRef = ref<FormInstance>()
-const form = ref<UserType>({
+const form = ref<User>({
   name: '',
   age: 1
 })
-const rules = reactive<FormRules<UserType>>({
+const rules = reactive<FormRules<User>>({
   name: [
     { required: true, message: '请输入姓名', trigger: 'blur' },
     { required: true, message: '请输入姓名', trigger: 'change' }

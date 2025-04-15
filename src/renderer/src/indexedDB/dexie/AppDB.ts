@@ -9,6 +9,19 @@ export default class AppDB extends Dexie {
     this.version(1).stores({
       users: '++id, name, age'
     })
+    this.version(2)
+      .stores({
+        users: '++id, name, birthYear'
+      })
+      .upgrade((tx) => {
+        return tx
+          .table('users')
+          .toCollection()
+          .modify((user) => {
+            user.birthYear = new Date().getFullYear() - user.age
+            delete user.age
+          })
+      })
     this.users = this.table('users')
   }
 }

@@ -36,6 +36,10 @@ const updateMessage = {
 ipcMain.on('check-for-update', () => {
   log.info('触发检查更新')
   autoUpdater.checkForUpdates()
+  dialog.showMessageBox({
+    title: '更新提示',
+    message: '正在检查更新……'
+  })
   if (checkUpdateFrom === 'user') return
   checkUpdateFrom = 'user'
   setTimeout(
@@ -59,11 +63,6 @@ autoUpdater.on('error', (error) => {
 // 检测是否需要更新
 autoUpdater.on('checking-for-update', () => {
   log.info('正在检查更新……')
-  if (checkUpdateFrom === 'system') return
-  dialog.showMessageBox({
-    title: '更新提示',
-    message: '正在检查更新……'
-  })
 })
 
 // 检测到可以更新时
