@@ -91,6 +91,18 @@ function createMainMenu(
               }
             })
           }
+        },
+        { type: 'separator' },
+        {
+          label: '文档目录',
+          click: () => {
+            mainWindow.webContents.send('router', {
+              type: 'replace',
+              router: {
+                path: '/directoryView'
+              }
+            })
+          }
         }
       ]
     },

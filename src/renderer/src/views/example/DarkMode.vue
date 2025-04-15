@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <h1>Dark Mode</h1>
-    <div style="padding: 18px">
+    <div class="p-[18px]">
       <el-select v-model="theme" @change="changeThemeFn">
         <el-option label="跟随系统" value="system" />
         <el-option label="浅色模式" value="light" />

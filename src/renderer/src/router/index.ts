@@ -73,6 +73,14 @@ const exampleRoutes = [
     meta: {
       title: '用户列表'
     }
+  },
+  {
+    path: '/directoryView',
+    name: 'DirectoryView',
+    component: () => import('@renderer/views/example/DirectoryView.vue'),
+    meta: {
+      title: '文档目录'
+    }
   }
 ]
 
