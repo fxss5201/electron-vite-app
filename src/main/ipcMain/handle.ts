@@ -3,7 +3,7 @@ import { controllerMap } from './../db/index'
 import { pingHandle } from './handle/pingHandle'
 import chalk from 'chalk'
 import { setTaskbarPosition, getTaskbarPosition } from './handle/taskbarPosition'
-import { showOpenDialogAndDirectory } from './handle/dialogHandle'
+import { openDirectoryFiles } from './handle/dialogHandle'
 
 export function addIpcMainHandleFn() {
   for (const key in controllerMap) {
@@ -21,7 +21,7 @@ export function addIpcMainHandleFn() {
   ipcMain.handle('ping', pingHandle)
   ipcMain.handle('setTaskbarPosition', setTaskbarPosition)
   ipcMain.handle('getTaskbarPosition', getTaskbarPosition)
-  ipcMain.handle('showOpenDialogAndDirectory', showOpenDialogAndDirectory)
+  ipcMain.handle('openDirectoryFiles', openDirectoryFiles)
 }
 
 export function removeIpcMainHandlerFn() {
@@ -34,5 +34,5 @@ export function removeIpcMainHandlerFn() {
   ipcMain.removeHandler('ping')
   ipcMain.removeHandler('setTaskbarPosition')
   ipcMain.removeHandler('getTaskbarPosition')
-  ipcMain.removeHandler('showOpenDialogAndDirectory')
+  ipcMain.removeHandler('openDirectoryFiles')
 }

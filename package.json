@@ -58,6 +58,7 @@
     "@tailwindcss/vite": "^4.1.1",
     "@types/node": "^22.13.4",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@vueuse/components": "^13.1.0",
     "@vueuse/core": "^13.0.0",
     "@vueuse/integrations": "^13.0.0",
     "commit-and-tag-version": "^12.5.0",

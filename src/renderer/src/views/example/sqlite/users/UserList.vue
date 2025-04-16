@@ -8,7 +8,7 @@
       <el-button plain @click="addUserFn">新增用户</el-button>
     </el-form-item>
   </el-form>
-  <el-table v-loading="loading" :data="userList">
+  <el-table v-loading="loading" :data="userList" stripe>
     <el-table-column prop="id" label="ID" />
     <el-table-column prop="name" label="姓名" />
     <el-table-column prop="age" label="年龄" />
