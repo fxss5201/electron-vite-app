@@ -1,4 +1,4 @@
-import { ipcMain } from 'electron'
+import { ipcMain, BrowserWindow } from 'electron'
 import {
   startProgressBar,
   pauseProgressBar,
@@ -15,30 +15,32 @@ import {
 } from './onFn/userDialogPage'
 import { openWindowFile } from './onFn/windowFile'
 
-export function addIpcMainOnFn(
-  win: Electron.CrossProcessExports.BrowserWindow,
-  tray: Electron.Tray
-) {
+export function addIpcMainOnFn(tray: Electron.Tray) {
   ipcMain.addListener('sendNotification', sendNotification)
 
-  ipcMain.addListener('startProgressBar', () => {
-    startProgressBar(win)
+  ipcMain.addListener('startProgressBar', (event: Electron.IpcMainEvent) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    if (win) startProgressBar(win)
   })
   ipcMain.addListener('pauseProgressBar', () => {
     pauseProgressBar()
   })
-  ipcMain.addListener('resumeProgressBar', () => {
-    resumeProgressBar(win)
+  ipcMain.addListener('resumeProgressBar', (event: Electron.IpcMainEvent) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    if (win) resumeProgressBar(win)
   })
-  ipcMain.addListener('resetProgressBar', () => {
-    resetProgressBar(win)
+  ipcMain.addListener('resetProgressBar', (event: Electron.IpcMainEvent) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    if (win) resetProgressBar(win)
   })
 
-  ipcMain.addListener('startFlashFrame', () => {
-    startFlashFrame(win)
+  ipcMain.addListener('startFlashFrame', (event: Electron.IpcMainEvent) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    if (win) startFlashFrame(win)
   })
-  ipcMain.addListener('stopFlashFrame', () => {
-    stopFlashFrame(win)
+  ipcMain.addListener('stopFlashFrame', (event: Electron.IpcMainEvent) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    if (win) stopFlashFrame(win)
   })
 
   ipcMain.addListener('startFlashTray', (_event: Electron.IpcMainEvent, time: number) => {

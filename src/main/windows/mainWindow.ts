@@ -8,7 +8,6 @@ import {
   addIpcMainOnFn,
   removeIpcMainOnFn
 } from './../ipcMain/index'
-import { resetProgressBar } from './../functional/progressBar'
 import createTray from './../tray'
 import { userDialogPageWindow } from './../ipcMain/onFn/userDialogPage'
 import store from './../stores'
@@ -51,10 +50,9 @@ function createMainWindow() {
 
   const tray = createTray(mainWindow)
   addIpcMainHandleFn()
-  addIpcMainOnFn(mainWindow, tray)
+  addIpcMainOnFn(tray)
 
   mainWindow.on('close', () => {
-    resetProgressBar(mainWindow)
     removeIpcMainHandlerFn()
     removeIpcMainOnFn()
     tray.destroy()
