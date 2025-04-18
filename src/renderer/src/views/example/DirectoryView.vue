@@ -124,7 +124,7 @@ const rowDblclickFn = (row: FileInfo) => {
           name: row.name,
           path: row.path
         },
-        fileList: files.value.map((item) => {
+        fileList: files.value.filter(item => item.isDirectory === false).map((item) => {
           return {
             name: item.name,
             path: item.path
