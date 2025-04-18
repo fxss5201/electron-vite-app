@@ -12,14 +12,13 @@ import { resetProgressBar } from './../functional/progressBar'
 import createTray from './../tray'
 import { userDialogPageWindow } from './../ipcMain/onFn/userDialogPage'
 import store from './../stores'
-import type { BaseWindowConstructorOptions } from 'electron/main'
 
 let mainBrowserWindow: Electron.BrowserWindow | null = null
 
 function createMainWindow() {
   const mainWindowBounds = store.get('mainWindowBounds')
   const mainWindowIsMaximized = store.get('mainWindowIsMaximized')
-  let mainWindowOption: BaseWindowConstructorOptions = {
+  let mainWindowOption = {
     title: '主窗口',
     width: 800,
     height: 600,

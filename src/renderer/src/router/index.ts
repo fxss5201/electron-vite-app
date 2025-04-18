@@ -118,14 +118,6 @@ export const routes = [
     }
   },
   {
-    path: '/downloadView',
-    name: 'DownloadView',
-    component: () => import('@renderer/views/DownloadView.vue'),
-    meta: {
-      title: '下载'
-    }
-  },
-  {
     path: '/home',
     name: 'MainLayout',
     redirect: '/home/homeView',
@@ -134,6 +126,22 @@ export const routes = [
       title: '首页'
     },
     children: mainRoutes
+  },
+  {
+    path: '/downloadView',
+    name: 'DownloadView',
+    component: () => import('@renderer/views/DownloadView.vue'),
+    meta: {
+      title: '下载'
+    }
+  },
+  {
+    path: '/fileView',
+    name: 'FileView',
+    component: () => import('@renderer/views/FileView.vue'),
+    meta: {
+      title: '文件查看'
+    }
   },
   ...exampleRoutes,
   {

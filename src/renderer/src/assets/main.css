@@ -44,3 +44,15 @@ body,
     background-color: #242424;
   }
 }
+
+.window-title-bar-button {
+  @apply flex items-center justify-center w-9 h-7 hover:bg-gray-200 dark:text-white dark:hover:bg-stone-700 cursor-pointer;
+  app-region: no-drag;
+}
+.window-title-bar-button-close {
+  @apply flex items-center justify-center w-9 h-7 hover:bg-red-500 hover:text-white dark:hover:bg-red-600 cursor-pointer;
+  app-region: no-drag;
+}
+.window-file-button {
+  @apply absolute top-[50%] mt-[-20px] w-10 h-10 rounded-full flex items-center justify-center bg-stone-200 hover:bg-stone-400 dark:bg-stone-700 dark:hover:bg-stone-400 z-[9999] cursor-pointer;
+}

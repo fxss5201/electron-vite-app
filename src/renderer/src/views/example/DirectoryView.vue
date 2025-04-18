@@ -3,6 +3,7 @@
     <h1 class="text-center">文档目录</h1>
     <div class="flex items-center">
       <el-button plain :loading="loading" @click="openDirectoryFilesFn()">选择目录</el-button>
+      <span class="ml-2">请勿选择<strong class="mx-1">C/D/E/F</strong>等顶级磁盘</span>
     </div>
     <div v-if="fileDirectoryParent.length > 0" class="flex h-[32px] flex-wrap items-center">
       <template v-for="(item, index) in fileDirectoryParent" :key="item.path">
@@ -12,12 +13,8 @@
           :class="{ 'text-gray-400': index === 0 || item.path === fileDirectory }"
           @click="goDirectoryParentFn(item.path, index)"
         >
-          <el-image
-            :src="`./icons/${defaultFolderIcon}`"
-            alt="file"
-            class="h-5 w-5 shrink-0"
-          ></el-image>
-          <div class="ml-2">{{ item.name }}</div>
+          <FileIcon :name="item.name" :is-directory="true" :is-open="true"></FileIcon>
+          <div class="ml-1">{{ item.name }}</div>
         </div>
       </template>
     </div>
@@ -42,32 +39,17 @@
             </div>
           </div>
         </template>
-        <template #default="{ row }">
-          <div class="flex items-center">
-            <el-image :src="`./icons/${row.icon}`" alt="file" class="h-5 w-5 shrink-0">
-              <template #placeholder>
-                <img
-                  :src="`./icons/${row.isDirectory ? defaultFolderIcon : defaultFileIcon}`"
-                  alt="file"
-                  class="h-5 w-5"
-                />
-              </template>
-              <template #error>
-                <img
-                  :src="`./icons/${row.isDirectory ? defaultFolderIcon : defaultFileIcon}`"
-                  alt="file"
-                  class="h-5 w-5"
-                />
-              </template>
-            </el-image>
-            <div class="ml-2">{{ row.name }}</div>
+        <template #default="scope: { row: FileInfo }">
+          <div class="flex items-center truncate">
+            <FileIcon :name="scope.row.name" :is-directory="scope.row.isDirectory"></FileIcon>
+            <div class="ml-1 flex-auto truncate">{{ scope.row.name }}</div>
           </div>
         </template>
       </el-table-column>
       <el-table-column label="修改时间" prop="ctimeString" sortable width="200px"></el-table-column>
       <el-table-column label="大小" prop="size" sortable width="100px">
-        <template #default="{ row }">{{
-          row.isDirectory ? '' : sizeToHumanReadable(row.size)
+        <template #default="scope: { row: FileInfo }">{{
+          scope.row.isDirectory ? '' : sizeToHumanReadable(scope.row.size)
         }}</template>
       </el-table-column>
     </el-table>
@@ -76,25 +58,11 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { getIconForFile, getIconForFolder } from 'vscode-icons-js'
 import dayjs from 'dayjs'
 import { ArrowRight } from '@element-plus/icons-vue'
 import { vOnKeyStroke } from '@vueuse/components'
-
-interface File {
-  name: string
-  path: string
-  isDirectory: boolean
-  size: number
-  ctime: Date
-}
-interface FileInfo extends File {
-  icon: string
-  ctimeString: string
-}
-
-const defaultFileIcon = ref<string>(getIconForFile('default') as string)
-const defaultFolderIcon = ref<string>(getIconForFolder('default') as string)
+import FileIcon from '@renderer/components/FileIcon.vue'
+import type { File, FileInfo } from '@renderer/types/fileType'
 
 const fileDirectory = ref<string>('')
 const files = ref<FileInfo[]>([])
@@ -108,9 +76,6 @@ const openDirectoryFilesFn = async (path: string = '') => {
   files.value = res.map((item) => {
     return {
       ...item,
-      icon: item.isDirectory
-        ? (getIconForFolder(getFileType(item.name)) ?? defaultFolderIcon.value)
-        : (getIconForFile(getFileType(item.name)) ?? defaultFileIcon.value),
       ctimeString: dayjs(item.ctime).format('YYYY-MM-DD HH:mm:ss')
     }
   })
@@ -142,7 +107,7 @@ const doSearchFn = () => {
   console.log(fileNameSearch.value)
   if (fileNameSearch.value) {
     files.value = filesOld.value.filter((item) => {
-      return item.name.includes(fileNameSearch.value)
+      return item.name.toLowerCase().includes(fileNameSearch.value.toLowerCase())
     })
   } else {
     files.value = filesOld.value
@@ -153,7 +118,22 @@ const rowDblclickFn = (row: FileInfo) => {
     fileDirectory.value = row.path
     openDirectoryFilesFn(row.path)
   } else {
-    console.log(row)
+    try {
+      window.electron.ipcRenderer.send('openWindowFile', {
+        file: {
+          name: row.name,
+          path: row.path
+        },
+        fileList: files.value.map((item) => {
+          return {
+            name: item.name,
+            path: item.path
+          }
+        })
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 const goDirectoryParentFn = (path: string, index: number) => {
@@ -161,10 +141,6 @@ const goDirectoryParentFn = (path: string, index: number) => {
     fileDirectory.value = path
     openDirectoryFilesFn(path)
   }
-}
-
-const getFileType = (name: string) => {
-  return name.split('.').pop() || 'default'
 }
 
 function sizeToHumanReadable(size: number) {

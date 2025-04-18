@@ -13,6 +13,7 @@ import {
   removeUserDialogPageWindow,
   userDialogPageWindowConfirm
 } from './onFn/userDialogPage'
+import { openWindowFile } from './onFn/windowFile'
 
 export function addIpcMainOnFn(
   win: Electron.CrossProcessExports.BrowserWindow,
@@ -50,6 +51,8 @@ export function addIpcMainOnFn(
   ipcMain.addListener('userDialogPage', userDialogPage)
   ipcMain.addListener('removeUserDialogPageWindow', removeUserDialogPageWindow)
   ipcMain.addListener('userDialogPageWindowConfirm', userDialogPageWindowConfirm)
+
+  ipcMain.addListener('openWindowFile', openWindowFile)
 }
 
 export function removeIpcMainOnFn() {
@@ -69,4 +72,6 @@ export function removeIpcMainOnFn() {
   ipcMain.removeAllListeners('userDialogPage')
   ipcMain.removeAllListeners('removeUserDialogPageWindow')
   ipcMain.removeAllListeners('userDialogPageWindowConfirm')
+
+  ipcMain.removeAllListeners('openWindowFile')
 }

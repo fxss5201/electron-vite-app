@@ -11,6 +11,7 @@ import debug from 'electron-debug'
 import * as Sentry from '@sentry/electron/main'
 import { registerShortcut, unregisterShortcut } from './functional/registryShortcut'
 import { setThemeMode, getThemeMode } from './ipcMain/handle/themeMode'
+import { readFile } from './functional/file'
 
 Sentry.init({
   dsn: 'https://65685402eaa68980f7d1f8db3cd1fa44@o412908.ingest.us.sentry.io/4509081523519493',
@@ -49,6 +50,34 @@ app.whenReady().then(async () => {
 
   ipcMain.handle('setThemeMode', setThemeMode)
   ipcMain.handle('getThemeMode', getThemeMode)
+
+  ipcMain.on('minimizeWindow', (event: Electron.IpcMainEvent) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    if (win) {
+      win.minimize()
+    }
+  })
+  ipcMain.on('maximizeWindow', (event: Electron.IpcMainEvent) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    if (win) {
+      win.maximize()
+    }
+  })
+  ipcMain.on('unmaximizeWindow', (event: Electron.IpcMainEvent) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    if (win) {
+      win.unmaximize()
+    }
+  })
+  ipcMain.on('closeWindow', (event: Electron.IpcMainEvent) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    if (win) {
+      win.close()
+    }
+  })
+  ipcMain.handle('openFileContent', (event: Electron.IpcMainInvokeEvent, filePath: string) => {
+    return readFile(filePath)
+  })
 })
 
 app.on('window-all-closed', () => {

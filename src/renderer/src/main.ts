@@ -16,6 +16,8 @@ import { useSettingStore } from '@renderer/stores/settingStore'
 import type { SettingType } from '@renderer/types/setting'
 import { useVersionStore } from '@renderer/stores/versionStore'
 import type { versionType } from '@renderer/types/versionType'
+import { useWindowFileStore } from '@renderer/stores/windowFileStore'
+import type { BaseFileContent } from '@renderer/types/fileType'
 
 Sentry.init({
   environment: import.meta.env.MODE,
@@ -56,4 +58,13 @@ window.electron.ipcRenderer.on('router', (_event, message: RouterMessage) => {
 window.electron.ipcRenderer.on('updateAvailable', (_event, versionInfo: versionType) => {
   const versionStore = useVersionStore()
   versionStore.setVersionInfo(versionInfo)
+})
+interface WindowFileInfoArgs {
+  file: BaseFileContent
+  fileList: BaseFileContent[]
+}
+window.electron.ipcRenderer.on('windowFileInfo', (_event, val: WindowFileInfoArgs) => {
+  const windowFileStore = useWindowFileStore()
+  windowFileStore.setFile(val.file)
+  windowFileStore.setFileList(val.fileList)
 })

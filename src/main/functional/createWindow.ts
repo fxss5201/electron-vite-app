@@ -1,10 +1,10 @@
 import { BrowserWindow, app } from 'electron'
 import { join } from 'path'
-import type { BaseWindowConstructorOptions, BrowserWindowConstructorOptions } from 'electron/main'
+import type { BrowserWindowConstructorOptions } from 'electron/main'
 import { is } from '@electron-toolkit/utils'
 import icon from '../../../resources/icon.png?asset'
 
-function createWindow(option: BaseWindowConstructorOptions): BrowserWindow {
+function createWindow(option: BrowserWindowConstructorOptions): BrowserWindow {
   const defaultConfig: BrowserWindowConstructorOptions = {
     show: false,
     ...(process.platform === 'linux' || !app.isPackaged ? { icon } : {}),
@@ -15,7 +15,14 @@ function createWindow(option: BaseWindowConstructorOptions): BrowserWindow {
     }
   }
 
-  const configs: BrowserWindowConstructorOptions = { ...defaultConfig, ...option }
+  const configs: BrowserWindowConstructorOptions = {
+    ...defaultConfig,
+    ...option,
+    webPreferences: {
+      ...defaultConfig.webPreferences,
+      ...option.webPreferences
+    }
+  }
 
   const win = new BrowserWindow(configs)
 
