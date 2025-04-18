@@ -1,7 +1,7 @@
 <template>
   <div class="h-7" style="app-region: drag">
     <div
-      class="fixed top-0 right-0 left-0 z-[999999] flex h-7 items-center justify-between truncate"
+      class="fixed top-0 right-0 left-0 z-[999999] flex h-7 items-center justify-between truncate bg-gray-50 dark:bg-stone-950"
     >
       <div class="mx-2 flex h-7 items-center truncate">
         <slot></slot>
