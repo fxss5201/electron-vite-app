@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.9](https://github.com/fxss5201/electron-vite-app/compare/v0.0.8...v0.0.9) (2025-04-18)
+
+
+### Features
+
+* 任务栏闪烁和任务栏进度条代码调整 ([b076919](https://github.com/fxss5201/electron-vite-app/commit/b0769198d9d4a6052530d6ef38183dcd1fb81e1e))
+* 文档目录 ([66a789c](https://github.com/fxss5201/electron-vite-app/commit/66a789ca8fe75d0ba8aed0fa90d5d64dfabdadfc))
+* 文档目录功能完善 ([bdec854](https://github.com/fxss5201/electron-vite-app/commit/bdec8542253229edccdf013513e7082c4d272ec5))
+* 文档目录文件查看 ([1691167](https://github.com/fxss5201/electron-vite-app/commit/16911673d4de06fd4b833b14697d73c0558f6169))
+* Dexie 版本升级 ([a780a91](https://github.com/fxss5201/electron-vite-app/commit/a780a9176add875bc7b2a65c15d48630174756f1))
+
 ## [0.0.8](https://github.com/fxss5201/electron-vite-app/compare/v0.0.7...v0.0.8) (2025-04-10)
 
 
