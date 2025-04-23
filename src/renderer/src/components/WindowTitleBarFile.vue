@@ -1,5 +1,5 @@
 <template>
-  <WindowTitleBar>
+  <WindowTitleBar :always-on-top-able="true">
     <FileIcon :name="file.name" :size="20" />
     <div class="ml-1 truncate text-base">{{ file.name }}</div>
   </WindowTitleBar>

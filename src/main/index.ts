@@ -75,6 +75,12 @@ app.whenReady().then(async () => {
       win.close()
     }
   })
+  ipcMain.on('setAlwaysOnTop', (event: Electron.IpcMainEvent, value: boolean) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    if (win) {
+      win.setAlwaysOnTop(value)
+    }
+  })
   ipcMain.handle('openFileContent', (event: Electron.IpcMainInvokeEvent, filePath: string) => {
     return readFile(filePath)
   })

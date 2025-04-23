@@ -1,10 +1,18 @@
 <template>
   <WindowTitleBarFile :file="file!"></WindowTitleBarFile>
   <div class="relative h-[calc(100vh-28px)]">
-    <div class="window-file-button left-4" @click="goPrevFn">
+    <div
+      class="window-file-button left-4"
+      :title="`上一个文件：\n${prevFile.name}`"
+      @click="goPrevFn"
+    >
       <el-icon :size="18"><ArrowLeftBold /></el-icon>
     </div>
-    <div class="window-file-button right-4" @click="goNextFn">
+    <div
+      class="window-file-button right-4"
+      :title="`下一个文件：\n${nextFile.name}`"
+      @click="goNextFn"
+    >
       <el-icon :size="18"><ArrowRightBold /></el-icon>
     </div>
     <!-- eslint-disable-next-line prettier/prettier -->
@@ -70,6 +78,20 @@ watch(
     immediate: true
   }
 )
+const prevFile = computed(() => {
+  if (fileIndex.value === 0) {
+    return fileList.value[fileList.value.length - 1]
+  } else {
+    return fileList.value[fileIndex.value - 1]
+  }
+})
+const nextFile = computed(() => {
+  if (fileIndex.value === fileList.value.length - 1) {
+    return fileList.value[0]
+  } else {
+    return fileList.value[fileIndex.value + 1]
+  }
+})
 
 const fileType = computed(() => {
   return getFileType(file.value!.name)
