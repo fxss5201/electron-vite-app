@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.10](https://github.com/fxss5201/electron-vite-app/compare/v0.0.9...v0.0.10) (2025-04-23)
+
+
+### Features
+
+* 1. titleBar 按钮可配置 2. 文件预览增加上一个和下一个文件名 ([4c705f5](https://github.com/fxss5201/electron-vite-app/commit/4c705f5fd3bfa6d7c957c32ee5f802ef5061c846))
+* titleBar样式调整 ([ffc1ea7](https://github.com/fxss5201/electron-vite-app/commit/ffc1ea773220a6d41884daee4535114fbc62b363))
+
+
+### Bug Fixes
+
+* 文件列表排除目录 ([02c028c](https://github.com/fxss5201/electron-vite-app/commit/02c028c73134d272fde016bf52f75ae61d478dd1))
+
 ## [0.0.9](https://github.com/fxss5201/electron-vite-app/compare/v0.0.8...v0.0.9) (2025-04-18)
 
 
